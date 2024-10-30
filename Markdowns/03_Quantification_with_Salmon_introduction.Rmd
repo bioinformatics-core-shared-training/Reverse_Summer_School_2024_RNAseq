@@ -1,12 +1,13 @@
 ---
 title: "Alignment and Quantification of Gene Expression with Salmon"
-date: "March 2023"
+date: "October 2024"
 output:
   ioslides_presentation:
     css: css/stylesheet.css
     logo: images/CRUK_Cambridge_Institute.png
     smaller: yes
     widescreen: yes
+  beamer_presentation: default
 bibliography: ref.bib
 ---
 
@@ -14,50 +15,92 @@ bibliography: ref.bib
 
 <div style="line-height: 50%;"><br></div>
 
-<img src="images/workflow_3Day.svg" class="centerimg" style="width: 80%; margin-top: 60px;">
+<img src="images/01s_workflow_3Day.svg" class="centerimg" style="width: 80%; margin-top: 60px;">
+
+
+## Alignment and Quantification overview {#less_space_after_title}
+
+<div style="line-height: 10%;"><br></div>
+
+<img src="images/03s_aln_quant_overview.svg" class="centerimg" style="width: 48%; margin-top: 60px;">
+
 
 ## Traditional Alignment
 
 AIM: Given a reference sequence and a set of short reads, align each read to
 the reference sequence finding the most likely origin of the read sequence.
 
-<img src="images/SRAlignment.svg" class="centerimg" style="width: 100%; margin-top: 60px;">
+<img src="images/03s_SRAlignment.svg" class="centerimg" style="width: 100%; margin-top: 60px;">
 
 ## Alignment - Splicing aware alignment
 
-<img src="images/GappedAlignment.svg" class="centerimg" style="width: 100%; margin-top: 60px;">
+<img src="images/03s_GappedAlignment.svg" class="centerimg" style="width: 100%; margin-top: 60px;">
 
 Aligners: STAR, HISAT2
 
 
 ## Alignment
 
-* Traditional alignment is (relatively) slow and computationally intensive
+* Traditional alignment perform base-by-base alignment  
+* It is (relatively) slow and computationally intensive
 
     
-<img src="images/quasi_mapping_1.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
+<img src="images/03s_quasi_mapping_1.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
 
 ## Alignment
-
+* Traditional alignment perform base-by-base alignment
 * Traditional alignment is (relatively) slow and computationally intensive
     
-<img src="images/quasi_mapping_2.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
+<img src="images/03s_quasi_mapping_2.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
+
+
+
+
 
 ## Alignment
-
+* Traditional alignment perform base-by-base alignment
 * Traditional alignment is (relatively) slow and computationally intensive
     
-<img src="images/quasi_mapping_2.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
+<img src="images/03s_quasi_mapping_2.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
         
-Switch to *quasi-mapping* (Salmon) or *pseudo-alignment* (Kallisto)
 
+## BAM/SAM file format
+
+**S**equence **A**lignment/**M**ap (SAM) format is the standard format for files
+containing aligned reads.
+
+Definition of the format is available at https://samtools.github.io/hts-specs/SAMv1.pdf.
+
+Two main parts:  
+
+* Header  
+  	- contains meta data (source of the reads, reference genome, aligner, etc.)  
+  	- header lines start with “@”
+  	- header fields have standardized two-letter codes
+  	- `@RG` for read group, used for merging BAMs together
+  	
+* Alignment section  
+    - 1 line for each alignment  
+    - contains details of alignment position, mapping, base quality etc.  
+    - 11 required fields, but other content may vary depending on aligner and other
+      tools used to create the file
+
+* BAM is a binary version of SAM (not human readable)
+
+## BAM/SAM format - What does it look like?
+
+<img src="images/03s_SAM_alignment_1c.png" class="centerimg" style="width: 100%; margin-top: 10px;">
 
 ## Why are Pseudo-alignment methods faster?
 
+Switch to *quasi-mapping* (Salmon) or *pseudo-alignment* (Kallisto)
+
+* These tools avoids base-to-base alignment of the reads
+* ~ 20 times faster than the traditional alignment tools like STAR, HISAT2 etc
 * Unlike alignment based methods, pseudo-alignment methods focus on transcriptome (~2% of genome in human)
 * Use exact kmer matching rather than aligning whole reads with mismatches and indels
     
-<img src="images/quasi_mapping_3.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
+<img src="images/03s_quasi_mapping_3.svg" class="centerimg" style="width: 90%; margin-top: 40px;">
 
 
 ## Quantification tools
@@ -91,7 +134,7 @@ file (e.g. GFF or GTF)
 
 So the simplest approach is to count how many reads overlap each gene.
 
-<img src="images/Read_counting_2.svg" class="centerimg" style="width: 90%; margin-top: 20px;">
+<img src="images/03s_Read_counting_2.svg" class="centerimg" style="width: 90%; margin-top: 20px;">
 
 ## What is read quantification?
 
@@ -106,17 +149,26 @@ Salmon also takes account of biases:
 * **Sequence-based bias**: Bias in read start positions arising from the differential binding efficiency of random hexamer primers
 * **Fragment length bias**: Induced by size selection
 
-* Methods like Salmon attempt to mitigate the effect of technical biases by estimating sample-specific bias parameters.
+* Because salmon searches transcription, not genome, it's not the right tool for finding new genes or isoforms
 
-## Salmon workflow
 
-<img src="images/Salmon_workflow_2.png" class="centerimg" style="width: 55%;">
+## Salmon
 
-<div style="text-align: right">
-  Patro *et al.* (2017) Nature Methods doi:10.1038/nmeth.4197
-</div>
+Two essential steps
 
+1. Create transcriptome index
+
+* This makes downstream quasi-mapping and quantification step efficient and faster
+* Once you create an index, you can use it again and again
+* Consider the Kmer size (default 31 for >75bp)
+* Adding decoy sequences to filter contaminants 
+      
+2. Quasi-mapping and quantification    
+
+  
+  
 ## Practical
+
 
 1. Create and index to the transcriptome with Salmon
 2. Quantify transcript expression using Salmon
