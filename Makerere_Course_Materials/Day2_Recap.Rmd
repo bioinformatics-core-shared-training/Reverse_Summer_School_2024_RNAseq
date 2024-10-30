@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Differential Gene Expression Analysis with Bulk RNAseq"
 subtitle: "Recap of Day 1"
-date: "September 2023"
+date: "November 2024"
 output:
   ioslides_presentation:
     css: css/stylesheet.css
@@ -78,14 +78,6 @@ https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 <img src="images/quasi_mapping_3r.svg" class="centerimg" style="width: 90%;">
 
 <img src="images/GC_Bias.png" class="centerimg" style="width: 80%; margin-top: 20px;">
-
-## Quantification with Quasi-mapping (Salmon)
-
-<img src="images/Salmon_workflow_2.png" class="centerimg" style="width: 55%;">
-
-<div style="text-align: right">
-  Patro *et al.* (2017) Nature Methods doi:10.1038/nmeth.4197
-</div>
 
 ## QC of aligned reads
 
@@ -247,7 +239,7 @@ autoplot(pcDat,
 
 ## Multiple testing correction 
 
-* When do lots of tests we increase the chances of false positive results.
+* When we do lots of tests we increase the chances of false positive results.
 * We apply an adjustment to the pvalue - Benjamini-Hochberg (FDR).
 
 ## Case Study 

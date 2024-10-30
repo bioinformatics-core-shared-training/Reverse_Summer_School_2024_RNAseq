@@ -23,7 +23,7 @@ as practicals. The full course can be found here:
 
 ### Day 2 (Friday 22nd September)
 
-* [Recap of Day 1](Makerere_Course_Materials/Day2_reacp.html)
+* [Recap of Day 1](Makerere_Course_Materials/Day2_Recap.html)
 * [Annotation and Visualistation (Slides)](Makerere_Course_Materials/05_Annotation_and_Visualisation.Slides.html)
 * [Annotation and Visualistation (Practical)](Makerere_Course_Materials/05_Annotation_and_Visualisation.html)
 * [Gene Set Testing (Slides)](Makerere_Course_Materials/06_Gene_set_testing_introduction.html)
