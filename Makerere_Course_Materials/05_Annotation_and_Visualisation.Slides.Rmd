@@ -1,7 +1,7 @@
 ---
 title: "Introduction to RNAseq analysis in R"
 subtitle: "Annotation and Visualisation"
-date: "September 2023"
+date: "November 2024"
 output:
   ioslides_presentation:
     css: css/stylesheet.css
@@ -127,7 +127,9 @@ head(annot.interaction.11)
 ## # ℹ 1 more variable: Description <chr>
 ```
 
-## Visualisations - p-value histograms
+# Visualising Gene Expression Data
+
+## P-value histograms
 
 Examples of expected overall distribution
 
@@ -136,8 +138,6 @@ Examples of expected overall distribution
 (a) anti-conservative p-values (“Hooray!”)
 (b) very low counts genes usually have large p-values
 (c) do not expect positive tests after correction
-
-# Visualising Gene Expression Data
 
 ## P-value histograms
 
