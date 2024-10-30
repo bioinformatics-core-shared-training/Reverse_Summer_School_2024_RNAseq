@@ -24,77 +24,63 @@ differential expression analysis of RNA-seq data.
 > attempting these materials.
 > We recommend our [Introduction to R course](https://bioinformatics-core-shared-training.github.io/r-intro/)
 
-
-### Day 1
-
-
-1. [Introduction to RNAseq Methods](Bulk_RNAseq_Course_Base/Markdowns/01_Introduction_to_RNAseq_Methods.html) - Chandra
-
-2. [Raw read file format and QC](Bulk_RNAseq_Course_Base/Markdowns/02_FastQC_introduction.html) - Adam
-  - [Practical](Bulk_RNAseq_Course_Base/Markdowns/02_FastQC_practical.html)  
-  - [Practical solutions](Bulk_RNAseq_Course_Base/Markdowns/02_FastQC_practical.Solutions.html)  
-
-3. [Alignment and Quantification of Gene Expression with Salmon](Bulk_RNAseq_Course_Base/Markdowns/03_Quantification_with_Salmon_introduction.html) - Adam
-  - [Practical](Bulk_RNAseq_Course_Base/Markdowns/03_Quantification_with_Salmon_practical.html)  
-  - [Practical solutions](Bulk_RNAseq_Course_Base/Markdowns/03_Quantification_with_Salmon_practical.Solutions.html)  
-    
-4. [QC of alignment](Bulk_RNAseq_Course_Base/Markdowns/04_Quality_Control_introduction.html) - Abbi
-  - [Practical](Bulk_RNAseq_Course_Base/Markdowns/04_Quality_Control_practical.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/04_Quality_Control_practical.pdf))  
-  - [Practical solutions](Bulk_RNAseq_Course_Base/Markdowns/04_Quality_COntrol_practical.Solutions.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/04_Quality_Control_practical.Solutions.pdf))  
-
-15.30 - 17.30 [Data Exploration in R](Bulk_RNAseq_Course_Base/Markdowns/05_Data_Exploration.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/05_Data_Exploration.pdf)) - Jiayin
- - [Practical solutions](Bulk_RNAseq_Course_Base/Markdowns/05_Data_Exploration.Solutions.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/05_Data_Exploration.Solutions.pdf))  
- - [Live script](live_scripts/data_exploration.R)  
+## Timetable
 
 
-### Day 2
+* Session 1 - [Introduction to RNAseq Methods](Markdowns/01_Introduction_to_RNAseq_Methods.html)
 
-**Trainers in-room:** Jiayin, Chandra, Jon, Abbi (OL)  
-**Trainers online:** Adam, Raquel, Ulrika
 
-<!-- Welcome Announcements - Abbi -->
-9:30 - 10:15  [Introduction to RNAseq Analysis in R](Bulk_RNAseq_Course_Base/Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html) - Jiayin
+* Session 2 - [Raw read file format and QC](Markdowns/02_FastQC_introduction.html)
+        - [Practical](Markdowns/02_FastQC_practical.html)
+        - [Practical solutions](Markdowns/02_FastQC_solutions.html)
 
-10:15 - 13:00 Statistical Analysis of Bulk RNAseq Data
+* Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)   
 
-- Part I: [Statistics of RNA-seq analysis](Bulk_RNAseq_Course_Base/additional_scripts_and_materials/RNA-seq_stats.pdf) - Chandra
+  - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
+  - [Practical solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
 
-- Part II: [Linear Models in R and DESeq2](Bulk_RNAseq_Course_Base/Markdowns/07_Linear_Models.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/07_Linear_Models.pdf)) - Chandra
-  - [Slides](Bulk_RNAseq_Course_Base/additional_scripts_and_materials/Statistical_models_in_R_DESeq2.pdf)  
-  - Find the worksheet in `Course_Materials/stats/models_in_r_worksheet.R`  
+* Session 4 - [QC of alignment](Markdowns/04_Quality_Control_introduction.html)  
 
-13:00 - 14:00 Lunch
+  - [Practical](Markdowns/04_Quality_Control_practical.html) ([pdf](Markdowns/04_Quality_Control_practical.pdf))  
+  - [Practical solutions](Markdowns/04_Quality_Control_solutions.html) ([pdf](Markdowns/04_Quality_Control_solutions.pdf))   
 
-14:00 - 17:30 - [Differential Expression for RNA-seq](Bulk_RNAseq_Course_Base/Markdowns/08_DE_analysis_with_DESeq2.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/08_DE_analysis_with_DESeq2.pdf)) - Jon
-  - [practical solutions](Bulk_RNAseq_Course_Base/Markdowns/08_DE_analysis_with_DESeq2.Solutions.html) ([pdf](Bulk_RNAseq_Course_Base/Markdowns/08_DE_analysis_with_DESeq2.Solutions.pdf))  
-  - [live script](live_scripts/deseq_day2_afternoon.R)  
-  - [extra models plots](Bulk_RNAseq_Course_Base/additional_scripts_and_materials/Expl_all.pdf)  
+* Session 5 - [Data Exploration in R](Markdowns/05_Data_Exploration.html) ([pdf](Markdowns/05_Data_Exploration.pdf))  
 
-### Day 3
+  - [Practical solutions](Markdowns/05_Data_Exploration_solutions.html) ([pdf](Markdowns/05_Data_Exploration_solutions.pdf))   
 
-**Trainers in-room:** Abbi, Hugo, Raquel, Jiayin (OL)  
-**Trainers online:** Jon, Adam
 
-9.30 - 9.45 - [Recap of Day 1 and 2](Bulk_RNAseq_Course_Base/additional_scripts_and_materials/Analysis_of_RNA-seq_data_day3recap.pdf) - Abbi
+* Session 6 - Statistical analysis of RNAseq data in R
+  - [Introduction to RNAseq Analysis in R](Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html)  
+  - [Statistical Analysis of Bulk RNAseq Data](additional_scripts_and_materials/RNA-seq_stats.pdf)  
+  - [Linear Models in R and DESeq2 (Slides)](additional_scripts_and_materials/Statistical_models_in_R_DESeq2.pdf)    
+  - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html) ([pdf](Markdowns/07_Linear_Models.pdf))  
+  - [Practical - Differential Expression for RNA-seq](Markdowns/08_DE_analysis_with_DESeq2.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2.pdf))      
+  - [practical solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2_solutions.pdf))    
+  - [DESeq2 results extraction cheatsheet](additional_scripts_and_materials/DESeq2_results_cheatsheet.pdf)
+  - [extra models plots](additional_scripts_and_materials/Expl_all.pdf)
 
-9.45 - 12.30 [Annotation and Visualisation of RNA-seq results](Bulk_RNAseq_Course_Base/Markdowns/09_Annotation_and_Visualisation.html) - Raquel
-  - [practical solutions](Bulk_RNAseq_Course_Base/Markdowns/09_Annotation_and_Visualisation_Solutions.html)  
-  - [live script](live_scripts/ann_and_vis_day3_morning.R) -->
 
-12.30 - 13.30 Lunch
+* Session 7 - [Annotation of RNA-seq results](Markdowns/09_Annotation.html)
+  - [Practical](Markdowns/09_Annotation_and_Visualisation.html) ([pdf](Markdowns/09_Annotation_and_Visualisation.pdf))
+  - [Practical solutions](Markdowns/09_Annotation_and_Visualisation_Solutions.html) ([pdf](Markdowns/09_Annotation_and_Visualisation_Solutions.pdf))
 
-13.30 - 16:30  [Gene-set testing](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing_introduction.html) - Abbi
-  - [Practical (html)](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing.html) [(rmd)](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing.Rmd) [(pdf)](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing.pdf)
-  -  - [Practical solutions (html)](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing.Solutions.html) [(rmd)](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing.Solutions.Rmd) [(pdf)](Bulk_RNAseq_Course_Base/Markdowns/10_Gene_set_testing.Solutions.pdf) 
-   - [Live Script](live_scripts/geneSet.R) 
+* Session 8 - [Visualisation differential expression results](Markdowns/10_Data_Visualisation.html)     
+  - [practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
 
-<!-- Goodbye: Abbi -->
+* Session 9 - [Gene-set testing](Markdowns/11_Gene_set_testing_introduction.html)
+   - [Practical (html)](Markdowns/11_Gene_set_testing.html) [(pdf)](Markdowns/11_Gene_set_testing.pdf)
+   - [Practical solutions (html)](Markdowns/11_Gene_set_testing_solutions.html) (pdf)](Markdowns/11_Gene_set_testing_solutions.pdf)    
 
-## Source Materials for Practicals
+
+## Data, software and materials
 
 The lecture slides and other source materials, including R code and
 practical solutions, can be found in the course's [Github
 repository](https://github.com/bioinformatics-core-shared-training/Bulk_RNASeq_Course_March23)
+
+The full data used in the course can be [downloaded from dropbox](https://www.dropbox.com/sh/sz44que2vha44xw/AABISE1DdBSS6s_zLoW1vuCGa?st=z95zfjyg&dl=0). 
+
+Instructions to install software are available from the "[Software installation instructions](Bulk_RNAseq_Course_Base/Markdowns/setup.html)" page.
 
 ## Extended materials
 
