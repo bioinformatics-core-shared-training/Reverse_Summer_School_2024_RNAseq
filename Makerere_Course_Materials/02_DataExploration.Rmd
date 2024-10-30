@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Differential Gene Expression Analysis with Bulk RNAseq"
 subtitle: "Data exploration"
-date: "September 2023"
+date: "October 2024"
 output:
   ioslides_presentation:
     css: css/stylesheet.css
