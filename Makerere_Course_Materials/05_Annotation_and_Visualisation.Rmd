@@ -74,7 +74,6 @@ indexing with a single bracket `[` or download a resource with a double bracket
 `[[`.
 
 ```{r, makeOrgDb, message=F}
-
 # create an annotationhub instance
 ah <- AnnotationHub()
 ah
@@ -84,7 +83,6 @@ ah
 ahQueryResult <- query(ah, c("EnsDb", "Mus musculus", "102"))
 ahQueryResult
 MouseEnsDb <- ahQueryResult[[1]]
-
 ```
 
 This database contains the entire gene annotation from Ensembl release 102 for
@@ -167,7 +165,7 @@ annot <- annotations %>%
 annot.interaction.11 <- results.interaction.11 %>%
   as.data.frame() %>% 
   rownames_to_column("GeneID") %>% 
-  as.tibble() %>% 
+  as_tibble() %>% 
   left_join(annot, by="GeneID")
 annot.interaction.11
 ```
