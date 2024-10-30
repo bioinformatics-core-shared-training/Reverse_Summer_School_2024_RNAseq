@@ -8,9 +8,11 @@ output:
 bibliography: ref.bib
 ---
 
-```{r setup, echo=FALSE}
-options(tibble.print_max = 4, tibble.print_min = 4, max.print=40, 
-        tibble.max_extra_cols=2)
+```{r setup, echo = FALSE}
+options(tibble.print_max = 4,
+        tibble.print_min = 4,
+        max.print = 40,
+        tibble.max_extra_cols = 2)
 ```
 
 ## Load the data
@@ -31,7 +33,7 @@ Now load the data from the earlier session.
 
 ```{r loadData}
 txi <- readRDS("RObjects/txi.rds")
-sampleinfo <- read_tsv("data/samplesheet_corrected.tsv", col_types="cccc")
+sampleinfo <- read_tsv("data/samplesheet_corrected.tsv", col_types = "cccc")
 ```
 
 It is important to be sure that the order of the samples in rows in the sample 
@@ -40,7 +42,7 @@ will **not** check this. If the order does not match you will not be running the
 analyses that you think you are.
 
 ```{r checkSampleNames}
-all(colnames(txi$counts)==sampleinfo$SampleName)
+all(colnames(txi$counts) == sampleinfo$SampleName)
 ```
 
 # The model formula and design matrices
@@ -118,11 +120,12 @@ using alternative transcripts. `DESeq2` will incorporate this into its
 
 # Filter out the unexpressed genes
 
-Just as we did in session 7, we should filter out genes that uninformative.
+Whilst DESeq2 will perform it's own filtering of the genes, we should still
+filter out genes that uninformative.
 
 ```{r}
 keep <- rowSums(counts(ddsObj.raw)) > 5
-ddsObj.filt <- ddsObj.raw[keep,]
+ddsObj.filt <- ddsObj.raw[keep, ]
 ```
 
 # Differential expression analysis with DESeq2
@@ -154,17 +157,17 @@ on data in an MA plot. Let's look at **SRR7657882**, the fifth column, which has
 the largest normalisation factors.
 
 ```{r}
-logcounts <- log2(counts(ddsObj, normalized=FALSE)  + 1)
+logcounts <- log2(counts(ddsObj, normalized = FALSE)  + 1)
 
-limma::plotMA(logcounts, array = 5, ylim =c(-5, 5))
-abline(h=0, col="red")
+limma::plotMA(logcounts, array = 5, ylim = c(-5, 5))
+abline(h = 0, col = "red")
 ```
 
 ```{r}
-logNormalizedCounts <- log2(counts(ddsObj, normalized=TRUE)  + 1)
+logNormalizedCounts <- log2(counts(ddsObj, normalized = TRUE)  + 1)
 
-limma::plotMA(logNormalizedCounts, array=5, ylim =c(-5, 5))
-abline(h=0, col="red")
+limma::plotMA(logNormalizedCounts, array = 5, ylim = c(-5, 5))
+abline(h = 0, col = "red")
 ```
 
 DESeq2 doesn't actually normalise the counts, it uses raw counts and includes
@@ -213,7 +216,7 @@ We can generate a table of differential expression results from the DDS object
 using the `results` function of DESeq2.
 
 ```{r resultsTable}
-results.simple <- results(ddsObj, alpha=0.05)
+results.simple <- results(ddsObj, alpha = 0.05)
 results.simple
 ```
 
@@ -242,7 +245,8 @@ We could also check for the number of upregulated genes by also testing the
 fold change:
 
 ```{r}
-sum(results.simple$padj < 0.05 & results.simple$log2FoldChange > 0, na.rm = TRUE)
+sum(results.simple$padj < 0.05 & results.simple$log2FoldChange > 0,
+    na.rm = TRUE)
 ```
 
 ### Independent filtering
@@ -274,12 +278,12 @@ effects of Time Point are indepedent.
 ```{r}
 additive.model <- as.formula(~ TimePoint + Status)
 ddsObj.raw <- DESeqDataSetFromTximport(txi = txi,
-                                      colData = sampleinfo,
-                                      design = additive.model)
+                                       colData = sampleinfo,
+                                       design = additive.model)
 keep <- rowSums(counts(ddsObj.raw)) > 5
-ddsObj.filt <- ddsObj.raw[keep,]
+ddsObj.filt <- ddsObj.raw[keep, ]
 ddsObj <- DESeq(ddsObj.filt)
-results.additive <- results(ddsObj, alpha=0.05)
+results.additive <- results(ddsObj, alpha = 0.05)
 ```
 
 ### The default contrast of `results`
@@ -309,10 +313,10 @@ rm(results.additive)
 
 Let's get the top 100 genes by adjusted p-value
 
-```{r topGenesPvV, message = FALSE, results="hide"}
+```{r topGenesPvV, message = FALSE, results = "hide"}
 topGenesIvU <- as.data.frame(results.InfectedvUninfected) %>%
-    rownames_to_column("GeneID") %>% 
-    top_n(100, wt=-padj)
+    rownames_to_column("GeneID") %>%
+    top_n(100, wt = -padj)
 topGenesIvU
 ```
 
@@ -327,7 +331,7 @@ resultsNames(ddsObj)
 
 
 ```{r}
-results.d33vd11 <- results(ddsObj, name= "TimePoint_d33_vs_d11", alpha=0.05)
+results.d33vd11 <- results(ddsObj, name = "TimePoint_d33_vs_d11", alpha = 0.05)
 
 sum(results.d33vd11$padj < 0.05, na.rm = TRUE)
 ```
@@ -345,8 +349,8 @@ the same at different time point:
 Let's plot a PCA from `vst` transformed data. 
 Can you anticipate if the interaction term will be important?
 
-```{r pcaPlot, fig.width=5, fig.height=5}
-vstcounts <- vst(ddsObj.raw, blind=TRUE)
+```{r pcaPlot, fig.width = 5, fig.height = 5}
+vstcounts <- vst(ddsObj.raw, blind = TRUE)
 plotPCA(vstcounts,  intgroup = c("Status", "TimePoint"))
 ```
 
@@ -369,10 +373,10 @@ e.g. `~TimePoint * Status`, however, writing out in long form is clearer here.
 ```{r}
 interaction.model <- as.formula(~ TimePoint + Status + TimePoint:Status)
 ddsObj.raw <- DESeqDataSetFromTximport(txi = txi,
-                                      colData = sampleinfo,
-                                      design = interaction.model)
+                                       colData = sampleinfo,
+                                       design = interaction.model)
 keep <- rowSums(counts(ddsObj.raw)) > 5
-ddsObj.filt <- ddsObj.raw[keep,]
+ddsObj.filt <- ddsObj.raw[keep, ]
 ```
 
 Run the statistical analysis using the `DESeq` command and create a new analysis
@@ -405,9 +409,9 @@ The main effect `Status_Infected_vs_Uninfected` is therefore the difference
 between Infected and Uninfected **at 11 days post infection**. 
 
 ```{r, resIntd11}
-results.interaction.11 <- results(ddsObj.interaction, 
-                                  name="Status_Infected_vs_Uninfected",
-                                  alpha=0.05)
+results.interaction.11 <- results(ddsObj.interaction,
+                                  name = "Status_Infected_vs_Uninfected",
+                                  alpha = 0.05)
 ```
 
 To get the results for Infected versus Uninfected at 33 days post infection, 
@@ -417,9 +421,9 @@ In the help page for `results` it shows us how to do this with a `contrast` in
 example 3.
 
 ```{r resIntd33}
-results.interaction.33 <- results(ddsObj.interaction, 
+results.interaction.33 <- results(ddsObj.interaction,
           contrast = list(c("Status_Infected_vs_Uninfected", "TimePointd33.StatusInfected")),
-                                  alpha=0.05)
+                                  alpha = 0.05)
 ```
 
 Number of genes with padj < 0.05 for Test v Control at day 11:
@@ -436,8 +440,6 @@ sum(results.interaction.33$padj < 0.05, na.rm = TRUE)
 
 We can see that there is a strong difference in the effects of infection on 
 gene expression between days 11 and 33.
-
-
 
 --------------------
 
