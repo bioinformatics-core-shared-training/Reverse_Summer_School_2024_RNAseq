@@ -314,24 +314,24 @@ colnames(annotations)</code></pre>
 <h2>Join the annotation to the differential expression results table</h2>
 <p>Select the columns we want and rename them.</p>
 <pre class="r"><code>annot &lt;- annotations %&gt;%
-  select(GeneID = gene_id, Symbol = symbol, Description = description) %&gt;% 
-  distinct()</code></pre>
+    select(GeneID = gene_id, Symbol = symbol, Description = description) %&gt;%
+    distinct()</code></pre>
 <p><strong>NOTE</strong>: You may get an error with this command that looks like:</p>
 <style type="text/css">
 .error {
    color: red;
 }
 </style>
-<pre class="r error"><code>Error in (function (classes, fdef, mtable)  : 
+<pre class="r error"><code>Error in (function (classes, fdef, mtable)  :
   unable to find an inherited method for function &#39;select&#39; for signature &#39;&quot;data.frame&quot;&#39;</code></pre>
 <p>This is due to the <code>select</code> function from <strong>dplyr</strong> (part of <strong>tidyverse</strong>) being masked by the <code>select</code> function from one of the annotation packages. This will have happened because the annotation package was loaded after the <strong>tidyverse</strong>. You can either restart your R session and reload the required packages, this time being sure to load <strong>tidyverse</strong> last, or just use <code>dplyr::select</code> to explicitly use the <code>select</code> function from <strong>dplyr</strong>:</p>
 <pre class="r"><code>annot &lt;- annotations %&gt;%
-  dplyr::select(GeneID = gene_id, Symbol = symbol, Description = description)</code></pre>
+    dplyr::select(GeneID = gene_id, Symbol = symbol, Description = description)</code></pre>
 <pre class="r"><code>annot.interaction.11 &lt;- results.interaction.11 %&gt;%
-  as.data.frame() %&gt;% 
-  rownames_to_column(&quot;GeneID&quot;) %&gt;% 
-  as_tibble() %&gt;% 
-  left_join(annot, by=&quot;GeneID&quot;)
+    as.data.frame() %&gt;%
+    rownames_to_column(&quot;GeneID&quot;) %&gt;%
+    as_tibble() %&gt;%
+    left_join(annot, by=&quot;GeneID&quot;)
 annot.interaction.11</code></pre>
 <pre><code>## # A tibble: 20,091 × 9
 ##    GeneID           baseMean log2FoldChange  lfcSE   stat  pvalue    padj Symbol
