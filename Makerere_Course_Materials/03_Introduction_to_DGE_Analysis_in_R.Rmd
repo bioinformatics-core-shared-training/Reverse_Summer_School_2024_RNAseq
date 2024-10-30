@@ -1,7 +1,7 @@
 ---
 title: "Introduction to RNAseq analysis in R"
 subtitle: "Differential Gene Expression Analysis"
-date: "September 2023"
+date: "October 2024"
 output:
   ioslides_presentation:
     css: css/stylesheet.css
@@ -24,12 +24,23 @@ output:
 
 <img src="images/RNAseq_data_ana_gen_idea.png" class="centerimg" style="width: 90%">
 
+* Two groups:
+    * Control: 3 replicates
+    * Treatment: 3 replicates
+* Total of 6 samples
+* Question of interest: Which genes are differentially expressed between the two groups?
+* N "independent" statistical tests - one for each gene
 
 
 ## General idea behind any statistical test
 
 <img src="images/general_idea_statistical_test.png" class="centerimg" style="width: 90%">
 
+* n = sample size  
+* Statistic is used to get *p-value* based on the theoretical distribution of
+  the test statistic
+* *p-value* is a function of the statistic
+* The statistic is a function of the effect size and the sample variance
 
 ## Normalisation
 
@@ -460,7 +471,7 @@ to cope with other distributions e.g Negative Binomial
 
 ## Different types of model with two factors
 
-<img src="images/AdditiveAndInteractionModelsSm.png" class="centerimg" style="width: 95%">
+<img src="images/AdditiveAndInteractionModelsSM.png" class="centerimg" style="width: 95%">
 
 ## Multiple testing correction 
 
