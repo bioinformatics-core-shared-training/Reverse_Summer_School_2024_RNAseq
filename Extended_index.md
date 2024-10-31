@@ -11,10 +11,10 @@ during the taught course.
     - [Downloading files from SRA](Markdowns/S1_Getting_raw_reads_from_SRA.html)
 
 2. Raw read file format and QC
-    - [Using Trimmomatic to remove adapter contamination from reads](Markdowns/S3_Trimming_Reads.html)
+    - [Using Trimmomatic to remove adapter contamination from reads](Markdowns/S2_Trimming_Reads.html)
 
 3. Gene expression quantification
-    - [Using Subread to count aligned reads](Markdowns/S8_Read_Counts_with_SubRead.html)
+    - [Using Subread to count aligned reads](Markdowns/S8_Read_Counts_with_SubRead.html)  
             - [practical solutions](Markdowns/S8_Read_Counts_with_SubRead.Solutions.html)
 
 3. Data exploration - extended 
@@ -26,7 +26,6 @@ during the taught course.
 4. Annotation and Visualisation - extended 
     - [Annotation with biomaRt](Markdowns/S6_Annotation_With_BioMart.html)  
         - [practical solutions](Markdowns/S6_Annotation_With_BioMart.Solution.html)
-    - [Creating the annotation used in the course](additional_scripts_and_materials/Making_the_annotation_table.html)
     - [Additional Visualisations](Markdowns/S7_Additional_Visualisation.html)
 
 ### Supplementary lessons
