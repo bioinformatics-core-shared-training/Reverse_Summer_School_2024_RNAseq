@@ -60,13 +60,10 @@ differential expression analysis of RNA-seq data.
 
 * Session 8 - Differential Expression Analysis with DESeq2
   - [Practical - Differential Expression for RNA-seq](Markdowns/08_DE_analysis_with_DESeq2.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2.pdf))      
-  - [practical solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2_solutions.pdf))    
-  - [DESeq2 results extraction cheatsheet](additional_scripts_and_materials/DESeq2_results_cheatsheet.pdf)
-  - [extra models plots](additional_scripts_and_materials/Expl_all.pdf)
+  - [Practical solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2_solutions.pdf))    
 
 
-* Session 9 - [Annotation of RNA-seq results](Markdowns/09_Annotation.html)
-  - [Practical](Markdowns/09_Annotation_and_Visualisation.html) ([pdf](Markdowns/09_Annotation_and_Visualisation.pdf))
+* Session 9 - [Annotation of RNA-seq results](Markdowns/09_Annotation.html)   
   - [Practical solutions](Markdowns/09_Annotation_and_Visualisation_Solutions.html) ([pdf](Markdowns/09_Annotation_and_Visualisation_Solutions.pdf))
 
 
