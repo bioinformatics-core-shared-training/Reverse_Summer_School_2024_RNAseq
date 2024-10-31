@@ -33,7 +33,7 @@ differential expression analysis of RNA-seq data.
 * Session 2 - [Raw read file format and QC](Markdowns/02_FastQC_introduction.html)  
     - [Practical](Markdowns/02_FastQC_practical.html)  
     - [Practical solutions](Markdowns/02_FastQC_solutions.html)
-
+<br />
 
 * Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)      
   - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
@@ -67,12 +67,12 @@ differential expression analysis of RNA-seq data.
 
 
 * Session 10 - [Visualisation differential expression results](Markdowns/10_Data_Visualisation.html)     
-  - [practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
+  - [Practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
 
 
 * Session 11 - [Gene-set testing](Markdowns/11_Gene_set_testing_introduction.html)
    - [Practical (html)](Markdowns/11_Gene_set_testing.html) [(pdf)](Markdowns/11_Gene_set_testing.pdf)
-   - [Practical solutions (html)](Markdowns/11_Gene_set_testing_solutions.html) (pdf)](Markdowns/11_Gene_set_testing_solutions.pdf)    
+   - [Practical solutions (html)](Markdowns/11_Gene_set_testing_solutions.html) [(pdf)](Markdowns/11_Gene_set_testing_solutions.pdf)    
 
 
 ## Data, software and materials
