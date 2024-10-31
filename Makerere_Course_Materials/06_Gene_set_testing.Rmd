@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Differential Gene Expression Analysis with Bulk RNAseq"
 subtitle: "Gene Set Testing for RNA-seq"
-date: 'September 2023'
+date: 'November 2024'
 output:
   html_document:
     toc: yes
@@ -9,7 +9,7 @@ bibliography: ref.bib
 always_allow_html: true
 ---
 
-```{r setup, include=FALSE, cache=FALSE}
+```{r setup, include = FALSE, cache = FALSE}
 library(tidyverse)
 ```
 
@@ -63,12 +63,12 @@ It also provides some nice visualisation options.
 
 We first search the resource for mouse data:
 
-```{r loadClusterProfiler, message=FALSE}
+```{r loadClusterProfiler, message = FALSE}
 library(DESeq2)
 library(clusterProfiler)
 library(tidyverse)
 
-search_kegg_organism('mouse', by='common_name')
+search_kegg_organism("mouse", by = "common_name")
 ```
 
 We will use the 'mmu' 'kegg_code'.
@@ -88,17 +88,23 @@ results.interaction.11 <- readRDS("RObjects/DESeqResults.interaction_d11.rds")
 (LFC) estimates towards zero using and empirical Bayes procedure. The reason for
 doing this is that there is high variance in the LFC estimates when counts are 
 low and this results in lowly expressed genes appearing to show greater
-differences between groups than highly expressed genes. The `lfcShrink` method
-compensates for this and allows better visualisation and ranking of genes. 
+differences between groups than highly expressed genes. 
+
+```{r unshrunkMA}
+plotMA(results.interaction.11, alpha = 0.05)
+```
+
+The `lfcShrink` method compensates for this and allows better visualisation and
+ranking of genes. 
 
 ```{r shrinkLFC}
-ddsShrink.11 <- lfcShrink(ddsObj.interaction, 
-                       res = results.interaction.11,
-                       type = "ashr")
+ddsShrink.11 <- lfcShrink(ddsObj.interaction,
+                          res = results.interaction.11,
+                          type = "ashr")
 
 shrinkTab.11 <- as.data.frame(ddsShrink.11) %>%
-    rownames_to_column("GeneID") %>% 
-    rename(logFC=log2FoldChange, FDR=padj)
+    rownames_to_column("GeneID") %>%
+    rename(logFC = log2FoldChange, FDR = padj)
 ```
 
 ## MA plots
@@ -110,12 +116,13 @@ for each gene against its average expression across all samples in the two
 conditions being contrasted. `DESeq2` has a handy function for plotting this.
 Let's use it too compare the shrunk and un-shrunk fold changes.
 
-```{r maPlotDESeq2, fig.align="center", fig.width=10, fig.height=5}
-par(mfrow=c(1,2))
-plotMA(results.interaction.11, alpha=0.05)
-plotMA(ddsShrink.11, alpha=0.05)
+```{r maPlotDESeq2, fig.align = "center", fig.width = 10, fig.height = 5}
+par(mfrow = c(1, 2))
+plotMA(results.interaction.11, alpha = 0.05)
+plotMA(ddsShrink.11, alpha = 0.05)
 ```
-### Load results with annotion
+
+### Load results with annotation
 
 We now load the R object keeping the outcome of the differential expression 
 analysis for the d11 contrast.
@@ -136,12 +143,12 @@ For this tool we need to use Entrez IDs, so we will also need to eliminate genes
 with a missing Entrez ID (NA values in the 'Entrez' column).
 
 ```{r enrichKEGGprint}
-sigGenes <- shrink.d11 %>% 
-    drop_na(Entrez, FDR) %>% 
-    filter(FDR < 0.05 & abs(logFC) > 1) %>% 
+sigGenes <- shrink.d11 %>%
+    drop_na(Entrez, FDR) %>%
+    filter(FDR < 0.05 & abs(logFC) > 1) %>%
     pull(Entrez)
 
-keggRes <- enrichKEGG(gene = sigGenes, organism = 'mmu')
+keggRes <- enrichKEGG(gene = sigGenes, organism = "mmu")
 as_tibble(keggRes)
 ```
 
@@ -153,7 +160,7 @@ highlighting the genes we selected as differentially expressed.
 We will show one of the top hits: pathway 'mmu04612' for 'Antigen processing and presentation'.
 
 ```{r browseKegg}
-browseKEGG(keggRes, 'mmu04612')
+browseKEGG(keggRes, "mmu04612")
 ```
 
 ### Visualise a pathway as a file
@@ -168,14 +175,14 @@ colour by any numeric vector, e.g. p-value).
 
 The package plots the KEGG pathway to a `png` file in the working directory.
 
-```{r pathview, message=F}
+```{r pathview, message = F}
 library(pathview)
 logFC <- shrink.d11$logFC
 names(logFC) <- shrink.d11$Entrez
-pathview(gene.data = logFC, 
-         pathway.id = "mmu04612", 
-         species = "mmu", 
-         limit = list(gene=20, cpd=1))
+pathview(gene.data = logFC,
+         pathway.id = "mmu04612",
+         species = "mmu",
+         limit = list(gene = 20, cpd = 1))
 ```
 
 *mmu04612.pathview.png*:
@@ -202,18 +209,18 @@ For this analysis we will narrow our search terms in the 'Biological Processes'
 Ontology so we can add the parameter "BP" with the 'ont' argument (the default 
 is Molecular Functions). 
 
-```{r GO analysis, message=FALSE, warning = FALSE}
+```{r GO analysis, message = FALSE, warning = FALSE}
 
 library(org.Mm.eg.db)
 
-sigGenes_GO <-  shrink.d11 %>% 
-    drop_na(FDR) %>% 
-    filter(FDR < 0.01 & abs(logFC) > 2) %>% 
+sigGenes_GO <-  shrink.d11 %>%
+    drop_na(FDR) %>%
+    filter(FDR < 0.01 & abs(logFC) > 2) %>%
     pull(GeneID)
 
 universe <- shrink.d11$GeneID
 
-ego <- enrichGO(gene          = sigGenes_GO, 
+ego <- enrichGO(gene          = sigGenes_GO,
                 universe      = universe,
                 OrgDb         = org.Mm.eg.db,
                 keyType       = "ENSEMBL",
@@ -226,7 +233,7 @@ We can use the `barplot` function to visualise the results. Count is the number
 of differentially expressed in each gene ontology term.
 
 ```{r barplot}
-barplot(ego, showCategory=20)
+barplot(ego, showCategory = 20)
 ```
 
 or perhaps the `dotplot` version is more informative. Gene ratio is Count 
@@ -241,9 +248,8 @@ Another visualisation that can be nice to try is the `emapplot` which shows the 
 ```{r emap}
 library(enrichplot)
 ego_pt <- pairwise_termsim(ego)
-emapplot(ego_pt, cex_label_category = 0.25)
+emapplot(ego_pt, cex_label_category = 0.5)
 ```
-
 
 # GSEA analysis
 
@@ -254,17 +260,30 @@ The software is distributed by the
 and is freely available for use by academic and non-profit organisations.
 The Broad also provide a number of very well curated gene sets
 for testing against your data - the [Molecular Signatures Database (MSigDB)](http://software.broadinstitute.org/gsea/msigdb/index.jsp). 
-These are collections of human genes. Fortunately, these lists
-have been translated to mouse equivalents by the Walter+Eliza Hall Institute
-Bioinformatics service and made available for 
-[download](http://bioinf.wehi.edu.au/MSigDB/index.html).
-They are now also available from a recent R package
-[msigdbr](https://cran.r-project.org/web/packages/msigdbr/index.html), which we will use.
 
-Let's load `msigdbr` now.
+These gene lists are made availalble for R in the Bioconductor package `msigdb`
+and the available dataset can be explored via `ExperimentHub`.
+
+First, we need to locate the correct database and download the data.
 
 ```{r}
-library(msigdbr)
+library(msigdb)
+library(ExperimentHub)
+
+eh <- ExperimentHub()
+query(eh, c("msigdb", "mm", "2023"))
+```
+
+The most recent available release of MSigDb is "msigdb.v2023.1", so we'll
+download this one. We have the option to use Entrez IDs or gene symbols. As we
+already have Entrez IDs in our annotation, we'll use these. 
+
+```{r}
+msigdb.mm <- getMsigdb(org = "mm", id = "EZID", version = "2023.1")
+
+msigdb.mm
+
+listCollections(msigdb.mm)
 ```
 
 ## Method
@@ -296,31 +315,32 @@ mtric, e.g. log(fold change), sorted in decreasing order.
 
 To start with we will simply use a rank the genes based on their fold change.
 
-We must exclude genes with no Ensembl ID.
+We must exclude genes with no Entrez ID.
 
 Also, we should use the shrunk LFC values.
 
 ```{r preparedata}
 rankedGenes <- shrink.d11 %>%
-  filter(!is.na(GeneID)) %>%
-  mutate(rank = logFC) %>%
-  arrange(desc(rank)) %>%
-  pull(rank, GeneID)
+    drop_na(GeneID, FDR, logFC, Entrez) %>%
+    mutate(rank = logFC) %>%
+    arrange(desc(rank)) %>%
+    pull(rank, Entrez)
+head(rankedGenes)
 ```
 
 ## Load pathways
 
-We will load the MSigDB Hallmark gene set with `msigdbr`, setting the `category`
-parameter to 'H' for **H**allmark gene set. The object created is a `tibble`
-with information on each {gene set; gene} pair (one per row). We will only keep
-the the gene set name, gene Ensembl ID.
+For `clusterProfiler` we need the genes and genesets to be in the form of is a `tibble`
+with information on each {gene set; gene} pair in the rows.
 
-```{r loadPathways_msigdbr}
-term2gene <- msigdbr(species = "Mus musculus", category = "H") %>% 
-  dplyr::select(gs_name, ensembl_gene)
-term2name <- msigdbr(species = "Mus musculus", category = "H") %>% 
-  dplyr::select(gs_name, gs_description) %>% 
-  distinct()
+```{r loadPathways_msigdb}
+hallmarks <- subsetCollection(msigdb.mm, "h")
+msigdb_ids <- geneIds(hallmarks)
+
+term2gene <- enframe(msigdb_ids, name = "gs_name", value = "entrez") %>%
+    unnest(entrez)
+
+head(term2gene)
 ```
 
 ## Conduct analysis
@@ -332,34 +352,33 @@ Arguments passed to `GSEA` include:
 * gene set minimum size
 * gene set maximum size
 
-```{r runGsea, warning=FALSE}
+```{r runGsea, warning = FALSE}
 gseaRes <- GSEA(rankedGenes,
                 TERM2GENE = term2gene,
-                TERM2NAME = term2name,
-                pvalueCutoff = 1.00, 
+                pvalueCutoff = 1.00,
                 minGSSize = 15,
                 maxGSSize = 500)
 ```
 
 Let's look at the top 10 results.
 
-```{r top10GseaPrint, eval=FALSE}
-as_tibble(gseaRes) %>% 
-  arrange(desc(abs(NES))) %>% 
-  top_n(10, wt=-p.adjust) %>% 
-  dplyr::select(-core_enrichment) %>%
-  mutate(across(c("enrichmentScore", "NES"), round, digits=3)) %>% 
-  mutate(across(c("pvalue", "p.adjust", "qvalue"), scales::scientific))
+```{r top10GseaPrint, eval = FALSE}
+as_tibble(gseaRes) %>%
+    arrange(desc(abs(NES))) %>%
+    top_n(10, wt = -p.adjust) %>%
+    dplyr::select(-core_enrichment) %>%
+    mutate(across(c("enrichmentScore", "NES"), ~round(.x, digits = 3))) %>%
+    mutate(across(c("pvalue", "p.adjust", "qvalue"), scales::scientific))
 ```
 
-```{r top10GseaPrintactual, echo=FALSE, warning=FALSE}
-as_tibble(gseaRes) %>% 
-  arrange(desc(abs(NES))) %>% 
-  top_n(10, wt=-p.adjust) %>% 
-  dplyr::select(-core_enrichment) %>%
-  mutate(across(c("enrichmentScore", "NES"), round, digits=3)) %>% 
-  mutate(across(c("pvalue", "p.adjust", "qvalue"), scales::scientific)) %>% 
-  DT::datatable(option=list(dom='t'))
+```{r top10GseaPrintactual, echo = FALSE, warning = FALSE}
+as_tibble(gseaRes) %>%
+    arrange(desc(abs(NES))) %>%
+    top_n(10, wt = -p.adjust) %>%
+    dplyr::select(-core_enrichment) %>%
+    mutate(across(c("enrichmentScore", "NES"), ~round(.x, digits = 3))) %>%
+    mutate(across(c("pvalue", "p.adjust", "qvalue"), scales::scientific)) %>%
+    DT::datatable(option = list(dom = "t"))
 ```
 
 ## Enrichment score plot
@@ -371,9 +390,9 @@ pathway (no tick for genes not in the pathway)
 * the enrichment score: the green curve shows the difference between the observed
 rankings and that which would be expected assuming a random rank distribution.
 
-```{r gseaEnrichmentPlot_both}
-gseaplot(gseaRes, 
-         geneSetID = "HALLMARK_INFLAMMATORY_RESPONSE", 
+```{r gseaEnrichmentPlot_both, fig.height = 8, fig.width = 10}
+gseaplot(gseaRes,
+         geneSetID = "HALLMARK_INFLAMMATORY_RESPONSE",
          title = "HALLMARK_INFLAMMATORY_RESPONSE")
 ```
 
@@ -384,3 +403,4 @@ explanation.
 ---------------------------------------------------------------
 
 # References
+
