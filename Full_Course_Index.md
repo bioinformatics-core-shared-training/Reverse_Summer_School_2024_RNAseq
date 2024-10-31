@@ -34,28 +34,29 @@ differential expression analysis of RNA-seq data.
         - [Practical](Markdowns/02_FastQC_practical.html)  
         - [Practical solutions](Markdowns/02_FastQC_solutions.html)
 
-* Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)   
 
+* Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)      
   - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
   - [Practical solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
 
-* Session 4 - [QC of alignment](Markdowns/04_Quality_Control_introduction.html)  
-
+* Session 4 - [QC of alignment](Markdowns/04_Quality_Control_introduction.html)    
   - [Practical](Markdowns/04_Quality_Control_practical.html) ([pdf](Markdowns/04_Quality_Control_practical.pdf))  
   - [Practical solutions](Markdowns/04_Quality_Control_solutions.html) ([pdf](Markdowns/04_Quality_Control_solutions.pdf))   
 
-* Session 5 - [Data Exploration in R](Markdowns/05_Data_Exploration.html) ([pdf](Markdowns/05_Data_Exploration.pdf))  
 
-  - [Practical solutions](Markdowns/05_Data_Exploration_solutions.html) ([pdf](Markdowns/05_Data_Exploration_solutions.pdf))   
+* Session 5 - [Data Exploration in R](Markdowns/05_Data_Exploration.html) ([pdf](Markdowns/05_Data_Exploration.pdf))      
+  - [Practical solutions](Markdowns/05_Data_Exploration_solutions.html) ([pdf](Markdowns/05_Data_Exploration_solutions.pdf))       
 
 
 * Session 6 - [Introduction to RNAseq Analysis in R](Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html)  
 
+
 * Session 7 - Statistical analysis of RNAseq data
   - [Statistical Analysis of Bulk RNAseq Data](additional_scripts_and_materials/RNA-seq_stats.pdf)  
   - [Linear Models in R and DESeq2 (Slides)](additional_scripts_and_materials/Statistical_models_in_R_DESeq2.pdf)    
-  - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html) ([pdf](Markdowns/07_Linear_Models.pdf))  
+  - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html) ([pdf](Markdowns/07_Linear_Models.pdf))     
   
+
 * Session 8 - Differential Expression Analysis with DESeq2
   - [Practical - Differential Expression for RNA-seq](Markdowns/08_DE_analysis_with_DESeq2.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2.pdf))      
   - [practical solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2_solutions.pdf))    
@@ -67,8 +68,10 @@ differential expression analysis of RNA-seq data.
   - [Practical](Markdowns/09_Annotation_and_Visualisation.html) ([pdf](Markdowns/09_Annotation_and_Visualisation.pdf))
   - [Practical solutions](Markdowns/09_Annotation_and_Visualisation_Solutions.html) ([pdf](Markdowns/09_Annotation_and_Visualisation_Solutions.pdf))
 
+
 * Session 10 - [Visualisation differential expression results](Markdowns/10_Data_Visualisation.html)     
   - [practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
+
 
 * Session 11 - [Gene-set testing](Markdowns/11_Gene_set_testing_introduction.html)
    - [Practical (html)](Markdowns/11_Gene_set_testing.html) [(pdf)](Markdowns/11_Gene_set_testing.pdf)
