@@ -64,7 +64,6 @@ differential expression analysis of RNA-seq data.
 
 
 * Session 9 - [Annotation of RNA-seq results](Markdowns/09_Annotation.html)   
-  - [Practical solutions](Markdowns/09_Annotation_and_Visualisation_Solutions.html) ([pdf](Markdowns/09_Annotation_and_Visualisation_Solutions.pdf))
 
 
 * Session 10 - [Visualisation differential expression results](Markdowns/10_Data_Visualisation.html)     
