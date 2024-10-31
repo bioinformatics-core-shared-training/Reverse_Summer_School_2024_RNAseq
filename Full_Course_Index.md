@@ -33,7 +33,6 @@ differential expression analysis of RNA-seq data.
 * Session 2 - [Raw read file format and QC](Markdowns/02_FastQC_introduction.html)  
     - [Practical](Markdowns/02_FastQC_practical.html)  
     - [Practical solutions](Markdowns/02_FastQC_solutions.html)
-<br />
 
 * Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)      
   - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
@@ -79,11 +78,13 @@ differential expression analysis of RNA-seq data.
 
 The lecture slides and other source materials, including R code and
 practical solutions, can be found in the course's [Github
-repository](https://github.com/bioinformatics-core-shared-training/Bulk_RNASeq_Course_March23)
+repository](https://bioinformatics-core-shared-training.github.io/Reverse_Summer_School_2024_RNAseq)
 
-The full data used in the course can be [downloaded from dropbox](https://www.dropbox.com/sh/sz44que2vha44xw/AABISE1DdBSS6s_zLoW1vuCGa?st=z95zfjyg&dl=0). 
+The full data used in the course can be [downloaded from dropbox](https://www.dropbox.com/sh/sz44que2vha44xw/AABISE1DdBSS6s_zLoW1vuCGa?st=z95zfjyg&dl=0). **Do not** attempt to 
+download the entire directory, it is very large. Just download the files as you
+need them.
 
-Instructions to install software are available from the "[Software installation instructions](Bulk_RNAseq_Course_Base/Markdowns/setup.html)" page.
+Instructions to install software are available from the "[Software installation instructions](Markdowns/setup.html)" page.
 
 ## Extended materials
 
