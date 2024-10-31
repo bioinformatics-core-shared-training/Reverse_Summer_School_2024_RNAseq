@@ -1,6 +1,5 @@
 ---
 title: "Introduction to Bulk RNAseq data analysis"
-date: '`r format(Sys.time(), "Last modified: %d %b %Y")`'
 output:
   html_document:
     toc: yes
@@ -12,8 +11,6 @@ bibliography: ref.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 ```
-
-<p style="color:red">**PLEASE DO NOT RUN THE CODE IN THIS DOCUMENT ON THE COURSE MACHINES**</p>
 
 ## Introduction
 
@@ -96,7 +93,7 @@ vdb-config -i
 
 The last command will open an interactive window:
 
-![](images/vdb-config.1.png)
+![](../images/vdb-config.1.png)
 
 Use the vdb-config window to set the import path to the `sra` directory we just 
 created:
