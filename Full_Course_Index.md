@@ -31,13 +31,14 @@ differential expression analysis of RNA-seq data.
 
 
 * Session 2 - [Raw read file format and QC](Markdowns/02_FastQC_introduction.html)  
-        - [Practical](Markdowns/02_FastQC_practical.html)  
-        - [Practical solutions](Markdowns/02_FastQC_solutions.html)
+    - [Practical](Markdowns/02_FastQC_practical.html)  
+    - [Practical solutions](Markdowns/02_FastQC_solutions.html)
 
 
 * Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)      
   - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
   - [Practical solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
+
 
 * Session 4 - [QC of alignment](Markdowns/04_Quality_Control_introduction.html)    
   - [Practical](Markdowns/04_Quality_Control_practical.html) ([pdf](Markdowns/04_Quality_Control_practical.pdf))  
