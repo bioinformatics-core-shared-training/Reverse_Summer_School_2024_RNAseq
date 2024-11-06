@@ -27,32 +27,44 @@ differential expression analysis of RNA-seq data.
 ## Timetable
 
 
-* Session 1 - [Introduction to RNAseq Methods](Markdowns/01_Introduction_to_RNAseq_Methods.html)
+* Session 1 - Introduction to RNAseq Methods
+    - [Slides](Markdowns/01_Introduction_to_RNAseq_Methods.html)
+    - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_1_Introduction_to_RNAseq_Methods.mp4)
 
 
-* Session 2 - [Raw read file format and QC](Markdowns/02_FastQC_introduction.html)  
+* Session 2 - Raw read file format and QC
+    - [Slides](Markdowns/02_FastQC_introduction.html)  
+    - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_2_Raw_read_file_format_and_QC.mp4)
     - [Practical](Markdowns/02_FastQC_practical.html)  
     - [Practical solutions](Markdowns/02_FastQC_solutions.html)
 
-* Session 3 - [Alignment and Quantification of Gene Expression with Salmon](Markdowns/03_Quantification_with_Salmon_introduction.html)      
+* Session 3 - Alignment and Quantification of Gene Expression with Salmon
+  - [Slides](Markdowns/03_Quantification_with_Salmon_introduction.html)      
+  - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_3_Salmon.mp4)
   - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
   - [Practical solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
 
 
 * Session 4 - [QC of alignment](Markdowns/04_Quality_Control_introduction.html)    
+  - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_4_QC_of_Aligned_Reads.mp4)
   - [Practical](Markdowns/04_Quality_Control_practical.html) ([pdf](Markdowns/04_Quality_Control_practical.pdf))  
   - [Practical solutions](Markdowns/04_Quality_Control_solutions.html) ([pdf](Markdowns/04_Quality_Control_solutions.pdf))   
 
 
-* Session 5 - [Data Exploration in R](Markdowns/05_Data_Exploration.html) ([pdf](Markdowns/05_Data_Exploration.pdf))      
+* Session 5 - Data Exploration in R
+  (Note: This session does not include a video lecture)
+  - [Practical](Markdowns/05_Data_Exploration.html) ([pdf](Markdowns/05_Data_Exploration.pdf))      
   - [Practical solutions](Markdowns/05_Data_Exploration_solutions.html) ([pdf](Markdowns/05_Data_Exploration_solutions.pdf))       
 
 
-* Session 6 - [Introduction to RNAseq Analysis in R](Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html)  
+* Session 6 - Introduction to RNAseq Analysis in R . 
+  - [Slides](Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html)  
+  - [Video Lecture](Introduction to RNAseq Analysis in )
 
 
 * Session 7 - Statistical analysis of RNAseq data
   - [Statistical Analysis of Bulk RNAseq Data](additional_scripts_and_materials/RNA-seq_stats.pdf)  
+  - [Video]()
   - [Linear Models in R and DESeq2 (Slides)](additional_scripts_and_materials/Statistical_models_in_R_DESeq2.pdf)    
   - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html) ([pdf](Markdowns/07_Linear_Models.pdf))     
   
