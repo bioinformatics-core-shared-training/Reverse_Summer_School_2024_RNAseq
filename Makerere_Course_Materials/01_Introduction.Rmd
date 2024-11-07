@@ -521,7 +521,7 @@ Picard Tools:
     * "Real" - coming from different original RNAs
     * PCA duplicates
     * Optical duplicates (not really with latest technologies)
-* Human exome is ~30 Mb therefore, if we have 50 bp Single End reads, there are ~60 million possible reads
+* Human exome is ~30 Mb therefore, therefore there are ~60 million possible reads
 * Duplication rates in RNAseq can be > 60% depending on depth of sequencing
 * Using Paired End reads (typical these days) greatly reduces duplication rates
 
