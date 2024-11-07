@@ -77,11 +77,11 @@ differential expression analysis of RNA-seq data.
 
 
 * Session 9 - Annotation of RNA-seq results
-  - [Practical]](Markdowns/09_Annotation.html)   
+  - [Practical](Markdowns/09_Annotation.html)   
 
 
 * Session 10 - Visualisation differential expression results
-  - [Practical]](Markdowns/10_Data_Visualisation.html)     
+  - [Practical](Markdowns/10_Data_Visualisation.html)     
   - [Practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
 
 
