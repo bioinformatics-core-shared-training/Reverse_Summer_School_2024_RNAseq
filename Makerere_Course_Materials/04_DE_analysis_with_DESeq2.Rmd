@@ -17,19 +17,18 @@ options(tibble.print_max = 4,
 
 ## Load the data
 
-We have already read in the results from Salmon into R and created a 
-`txi` object, which we then saved into an "rds" file. We can now load the txi
-from that file to start the differential expression analysis. We will also need
-the sample meta data sheet
-
-First load the packages we need.
+First load the packages we need. `DESeq2` for the actual differential gene
+expression analysis and the `tidyverse` for data handling.
 
 ```{r message = FALSE}
 library(DESeq2)
 library(tidyverse)
 ```
 
-Now load the data from the earlier session.
+We have already read in the results from Salmon into R and created a `txi`
+object for you, which we then saved into an "rds" file. We can now load the txi
+from that file to start the differential expression analysis. We will also need
+the sample meta data sheet
 
 ```{r loadData}
 txi <- readRDS("RObjects/txi.rds")
@@ -52,7 +51,7 @@ analyses that you think you are.
 all(colnames(txi$counts) == sampleinfo$SampleName)
 ```
 
-# The model formula and design matrices
+## `DESeq2` and other options 
 
 Now that we are happy that the quality of the data looks good, we can proceed to
 testing for differentially expressed genes. There are a number of packages to
@@ -69,7 +68,7 @@ one of the authors of DESeq2, about deciding which to use.
 
 We will use **DESeq2** for the rest of this practical.
 
-## Create a DESeqDataSet object with the raw data
+## The model formula and design matrices
 
 ### Creating the design model formula
 
@@ -456,4 +455,4 @@ gene expression between days 11 and 33.
 
 --------------------
 
-# References
+## References
