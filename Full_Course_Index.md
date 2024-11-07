@@ -59,13 +59,14 @@ differential expression analysis of RNA-seq data.
 
 * Session 6 - Introduction to RNAseq Analysis in R . 
   - [Slides](Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html)  
-  - [Video Lecture](Introduction to RNAseq Analysis in )
+  - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_6_Introduction_to_RNAseq_Analysis_in_R.mp4)
 
 
 * Session 7 - Statistical analysis of RNAseq data
-  - [Statistical Analysis of Bulk RNAseq Data](additional_scripts_and_materials/RNA-seq_stats.pdf)  
-  - [Video]()
+  - [Statistical Analysis of Bulk RNAseq Data (Slides)](additional_scripts_and_materials/RNA-seq_stats.pdf)  
+  - [Statistical Analysis of Bulk RNAseq Data (Video Lecture)](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_7_Statistical_Analysis_of_Bulk_RNAseq_Data.mp4)
   - [Linear Models in R and DESeq2 (Slides)](additional_scripts_and_materials/Statistical_models_in_R_DESeq2.pdf)    
+  - [Linear Models in R and DESeq2 (Video Lecture)](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_7_Linear_Models_in_R_and_DESeq2.mp4)
   - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html) ([pdf](Markdowns/07_Linear_Models.pdf))     
   
 
@@ -81,7 +82,9 @@ differential expression analysis of RNA-seq data.
   - [Practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
 
 
-* Session 11 - [Gene-set testing](Markdowns/11_Gene_set_testing_introduction.html)
+* Session 11 - Gene set testing
+   - [Slides](Markdowns/11_Gene_set_testing_introduction.html)   
+   - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_11_Gene_Set_Testing.mp4) . 
    - [Practical (html)](Markdowns/11_Gene_set_testing.html) [(pdf)](Markdowns/11_Gene_set_testing.pdf)
    - [Practical solutions (html)](Markdowns/11_Gene_set_testing_solutions.html) [(pdf)](Markdowns/11_Gene_set_testing_solutions.pdf)    
 
