@@ -45,7 +45,8 @@ differential expression analysis of RNA-seq data.
   - [Practical solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
 
 
-* Session 4 - [QC of alignment](Markdowns/04_Quality_Control_introduction.html)    
+* Session 4 - QC of alignment
+  - [Slides](Markdowns/04_Quality_Control_introduction.html)    
   - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_4_QC_of_Aligned_Reads.mp4)
   - [Practical](Markdowns/04_Quality_Control_practical.html) ([pdf](Markdowns/04_Quality_Control_practical.pdf))  
   - [Practical solutions](Markdowns/04_Quality_Control_solutions.html) ([pdf](Markdowns/04_Quality_Control_solutions.pdf))   
@@ -75,10 +76,12 @@ differential expression analysis of RNA-seq data.
   - [Practical solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2_solutions.pdf))    
 
 
-* Session 9 - [Annotation of RNA-seq results](Markdowns/09_Annotation.html)   
+* Session 9 - Annotation of RNA-seq results
+  - [Practical]](Markdowns/09_Annotation.html)   
 
 
-* Session 10 - [Visualisation differential expression results](Markdowns/10_Data_Visualisation.html)     
+* Session 10 - Visualisation differential expression results
+  - [Practical]](Markdowns/10_Data_Visualisation.html)     
   - [Practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
 
 
