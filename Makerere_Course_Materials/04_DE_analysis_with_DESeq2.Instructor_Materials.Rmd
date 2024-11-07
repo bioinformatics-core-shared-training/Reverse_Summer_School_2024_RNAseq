@@ -1,0 +1,316 @@
+---
+title: "Differential Expression of RNA-seq data"
+subtitle: "Instructor teaching materials" 
+date: '`r format(Sys.time(), "Last modified: %d %b %Y")`'
+output:
+  html_document:
+    toc: no 
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+### Load the data
+
+##### First load the packages we need.
+
+```{r message = FALSE}
+library(DESeq2)
+library(tidyverse)
+```
+
+##### Already created a `txi` object from the Salmon output.
+
+```{r loadData}
+txi <- readRDS("RObjects/txi.rds")
+sampleinfo <- read_tsv("data/samplesheet_corrected.tsv", col_types = "cccc")
+```
+
+##### First check the metadata.
+
+```{r}
+sampleinfo
+```
+
+##### check the order of the samples 
+
+```{r checkSampleNames}
+all(colnames(txi$counts) == sampleinfo$SampleName)
+```
+
+### `DESeq2` and other options 
+
+##### EdgeR, limma voom etc.....
+
+### Creating the design model formula
+
+##### DESeq2` will generate the model matrix internally. 
+
+##### We have two variables in our experiment: "Status" and "Time Point". 
+
+##### Start with simple model which considers Status but ignores Time Point.  
+
+```{r modelForumla}
+simple.model <- as.formula(~ Status)
+```
+
+##### model matrix
+
+```{r modelMatrix}
+model.matrix(simple.model, data = sampleinfo)
+```
+
+##### What is the intercept?
+
+##### Relevel
+
+```{r setFactors}
+sampleinfo <- mutate(sampleinfo, Status = fct_relevel(Status, "Uninfected"))
+model.matrix(simple.model, data = sampleinfo)
+```
+
+### Build a DESeq2DataSet
+
+```{r makeDDSObj}
+ddsObj.raw <- DESeqDataSetFromTximport(txi = txi,
+                                       colData = sampleinfo,
+                                       design = simple.model)
+```
+
+##### average transcript length  --> `DESeq2` "normalisation".
+
+#### Filter out the unexpressed genes
+
+```{r}
+keep <- rowSums(counts(ddsObj.raw)) > 5
+ddsObj.filt <- ddsObj.raw[keep, ]
+```
+
+## Differential expression analysis with DESeq2
+
+### The `DESeq2` work flow
+
+##### * Size factors    
+##### * Dispersion   
+##### * Fit model and estimate coefficients    
+
+### Step 1 - `estimateSizeFactors`
+
+```{r commonSizeFactors}
+ddsObj <- estimateSizeFactors(ddsObj.filt)
+```
+
+##### Let's have a look at what that did
+
+```{r}
+normalizationFactors(ddsObj.filt)
+normalizationFactors(ddsObj)
+```
+
+##### Plot MA - limma
+
+```{r}
+logcounts <- log2(counts(ddsObj, normalized = FALSE)  + 1)
+
+limma::plotMA(logcounts, array = 5, ylim = c(-5, 5))
+abline(h = 0, col = "red")
+```
+
+```{r}
+logNormalizedCounts <- log2(counts(ddsObj, normalized = TRUE)  + 1)
+
+limma::plotMA(logNormalizedCounts, array = 5, ylim = c(-5, 5))
+abline(h = 0, col = "red")
+```
+
+##### DESeq2 doesn't actually normalise the counts -- "OFFSET MATRIX" c.f. e.g. `edger`
+
+### Step 2 - `estimateDispersions`
+
+```{r genewiseDispersion}
+ddsObj <- estimateDispersions(ddsObj)
+```
+
+```{r plotDisp}
+plotDispEsts(ddsObj)
+```
+
+### Step 3 - `nbinomWaldTest`
+
+```{r applyGLM}
+ddsObj <- nbinomWaldTest(ddsObj)
+```
+
+### The `DESeq` command
+
+```{r theShortVersion}
+ddsObj <- DESeq(ddsObj.filt)
+```
+
+### Generate a results table
+
+```{r resultsTable}
+results.simple <- results(ddsObj, alpha = 0.05)
+results.simple
+```
+
+### Assess the number of differentially expressed genes
+
+```{r}
+sum(results.simple$padj < 0.05)
+```
+
+##### some `padj` values are `NA` - "Independent Filtering"
+
+```{r}
+sum(is.na(results.simple$padj))
+```
+
+##### To count the number of genes that are signficant we need to exclude the `NA`s:
+
+```{r}
+sum(results.simple$padj < 0.05, na.rm = TRUE)
+```
+
+##### check for the number of upregulated genes -  also use fold change
+
+```{r}
+sum(results.simple$padj < 0.05 & results.simple$log2FoldChange > 0,
+    na.rm = TRUE)
+```
+
+### Independent filtering Explanation
+
+### Fitting an additive model
+
+##### Model both "Status" and "Time Point" - an additive model with no interaction
+
+```{r}
+additive.model <- as.formula(~ TimePoint + Status)
+ddsObj.raw <- DESeqDataSetFromTximport(txi = txi,
+                                       colData = sampleinfo,
+                                       design = additive.model)
+keep <- rowSums(counts(ddsObj.raw)) > 5
+ddsObj.filt <- ddsObj.raw[keep, ]
+ddsObj <- DESeq(ddsObj.filt)
+results.additive <- results(ddsObj, alpha = 0.05)
+```
+
+### The default contrast of `results`
+
+```{r}
+results.additive
+```
+
+
+##### default is "Infected vs Uninfected" - WHY?
+
+```{r viewModelMatrix}
+model.matrix(additive.model, data = sampleinfo)
+```
+
+```{r resultsNames}
+resultsNames(ddsObj)
+```
+
+##### rename `results.additive`
+
+```{r}
+results.InfectedvUninfected <- results.additive
+rm(results.additive)
+```
+
+##### top 100 genes by adjusted p-value
+
+```{r topGenesPvV, message = FALSE, results = "hide"}
+topGenesIvU <- as.data.frame(results.InfectedvUninfected) %>%
+    rownames_to_column("GeneID") %>%
+    top_n(100, wt = -padj)
+topGenesIvU
+```
+
+###  Extracting other contrasts
+
+```{r}
+resultsNames(ddsObj)
+```
+
+```{r}
+results.d33vd11 <- results(ddsObj, name = "TimePoint_d33_vs_d11", alpha = 0.05)
+results.d33vd11
+sum(results.d33vd11$padj < 0.05, na.rm = TRUE)
+```
+
+### Should we be using the interaction model?
+
+##### Show the figure with different types of model
+
+```{r pcaPlot, fig.width = 5, fig.height = 5}
+vstcounts <- vst(ddsObj.raw, blind = TRUE)
+plotPCA(vstcounts,  intgroup = c("Status", "TimePoint"))
+```
+
+##### Yes - based on PCA but ALSO MAINLY **biology**
+
+### Using an interaction model
+
+##### Shorthand: `~TimePoint * Status`    
+
+```{r}
+interaction.model <- as.formula(~ TimePoint + Status + TimePoint:Status)
+ddsObj.raw <- DESeqDataSetFromTximport(txi = txi,
+                                       colData = sampleinfo,
+                                       design = interaction.model)
+keep <- rowSums(counts(ddsObj.raw)) > 5
+ddsObj.filt <- ddsObj.raw[keep, ]
+```
+
+```{r}
+ddsObj.interaction <- DESeq(ddsObj.filt)
+```
+
+### Extracting specific contrasts from an interactive model
+
+<h5 style="color:red"> "What is the difference in gene expression between Infected and Uninfected?" <h5>
+
+<h5 style="color:green">  "What is the difference in gene expression between Infected and Uninfected at 11 days post infection?"    </h5>
+<h5 style="color:green">  or </h5>
+<h5 style="color:green">  "What is the difference in gene expression between Infected and Uninfected at 33 days post infection?"     </h5>
+
+```{r resNamInteraction}
+resultsNames(ddsObj.interaction)
+```
+
+##### What is the intercept/reference group?
+
+##### `Status_Infected_vs_Uninfected` is  MAIN EFFECT **at 11 days post infection**. 
+
+```{r, resIntd11}
+results.interaction.11 <- results(ddsObj.interaction,
+                                  name = "Status_Infected_vs_Uninfected",
+                                  alpha = 0.05)
+```
+
+##### For Infected versus Uninfected at 33 days - add the interaction term `TimePointd33.StatusInfected`.
+
+##### HOW?: help page for `results` - example 3.
+
+```{r resIntd33}
+results.interaction.33 <- results(ddsObj.interaction,
+          contrast = list(c("Status_Infected_vs_Uninfected", "TimePointd33.StatusInfected")),
+                                  alpha = 0.05)
+```
+
+
+```{r nSigIntd11}
+sum(results.interaction.11$padj < 0.05, na.rm = TRUE)
+```
+
+```{r nSigIntd33}
+sum(results.interaction.33$padj < 0.05, na.rm = TRUE)
+```
+
+##### there is a strong difference in DGE between days 11 and 33.
+
+----------
