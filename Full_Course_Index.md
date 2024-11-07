@@ -60,7 +60,7 @@ differential expression analysis of RNA-seq data.
 
 * Session 6 - Introduction to RNAseq Analysis in R . 
   - [Slides](Markdowns/06_Introduction_to_RNAseq_Analysis_in_R.html)  
-  - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_6_Introduction_to_RNAseq_Analysis_in_R.mp4)
+  - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_6_Introduction_to_RNAseq_Analysis_in_R.mp4)
 
 
 * Session 7 - Statistical analysis of RNAseq data
