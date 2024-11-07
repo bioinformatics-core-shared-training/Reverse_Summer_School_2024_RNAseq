@@ -36,26 +36,26 @@ differential expression analysis of RNA-seq data.
     - [Slides](Markdowns/02_FastQC_introduction.html)  
     - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_2_Raw_read_file_format_and_QC.mp4)
     - [Practical](Markdowns/02_FastQC_practical.html)  
-    - [Practical solutions](Markdowns/02_FastQC_solutions.html)
+    - [Exercise solutions](Markdowns/02_FastQC_solutions.html)
 
 * Session 3 - Alignment and Quantification of Gene Expression with Salmon
   - [Slides](Markdowns/03_Quantification_with_Salmon_introduction.html)      
   - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_3_Salmon.mp4)
   - [Practical](Markdowns/03_Quantification_with_Salmon_practical.html)  
-  - [Practical solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
+  - [Exercise solutions](Markdowns/03_Quantification_with_Salmon_solutions.html)   
 
 
 * Session 4 - QC of alignment
   - [Slides](Markdowns/04_Quality_Control_introduction.html)    
   - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_4_QC_of_Aligned_Reads.mp4)
-  - [Practical](Markdowns/04_Quality_Control_practical.html) ([pdf](Markdowns/04_Quality_Control_practical.pdf))  
-  - [Practical solutions](Markdowns/04_Quality_Control_solutions.html) ([pdf](Markdowns/04_Quality_Control_solutions.pdf))   
+  - [Practical](Markdowns/04_Quality_Control_practical.html)     
+  - [Exercise solutions](Markdowns/04_Quality_Control_solutions.html)    
 
 
 * Session 5 - Data Exploration in R
   (Note: This session does not include a video lecture)
-  - [Practical](Markdowns/05_Data_Exploration.html) ([pdf](Markdowns/05_Data_Exploration.pdf))      
-  - [Practical solutions](Markdowns/05_Data_Exploration_solutions.html) ([pdf](Markdowns/05_Data_Exploration_solutions.pdf))       
+  - [Practical](Markdowns/05_Data_Exploration.html)    
+  - [Exercise solutions](Markdowns/05_Data_Exploration_solutions.html)    
 
 
 * Session 6 - Introduction to RNAseq Analysis in R . 
@@ -68,12 +68,12 @@ differential expression analysis of RNA-seq data.
   - [Statistical Analysis of Bulk RNAseq Data (Video Lecture)](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_7_Statistical_Analysis_of_Bulk_RNAseq_Data.mp4)
   - [Linear Models in R and DESeq2 (Slides)](additional_scripts_and_materials/Statistical_models_in_R_DESeq2.pdf)    
   - [Linear Models in R and DESeq2 (Video Lecture)](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_7_Linear_Models_in_R_and_DESeq2.mp4)
-  - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html) ([pdf](Markdowns/07_Linear_Models.pdf))     
+  - [Linear Models in R and DESeq2 (Worksheet)](Markdowns/07_Linear_Models.html)   
   
 
 * Session 8 - Differential Expression Analysis with DESeq2
-  - [Practical - Differential Expression for RNA-seq](Markdowns/08_DE_analysis_with_DESeq2.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2.pdf))      
-  - [Practical solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html) ([pdf](Markdowns/08_DE_analysis_with_DESeq2_solutions.pdf))    
+  - [Practical](Markdowns/08_DE_analysis_with_DESeq2.html)   
+  - [Exercise solutions](Markdowns/08_DE_analysis_with_DESeq2_solutions.html)     
 
 
 * Session 9 - Annotation of RNA-seq results
@@ -82,14 +82,14 @@ differential expression analysis of RNA-seq data.
 
 * Session 10 - Visualisation differential expression results
   - [Practical](Markdowns/10_Data_Visualisation.html)     
-  - [Practical solutions](Markdowns/10_Data_Visualisation_solutions.html)   
+  - [Exercise solutions](Markdowns/10_Data_Visualisation_solutions.html)   
 
 
 * Session 11 - Gene set testing
    - [Slides](Markdowns/11_Gene_set_testing_introduction.html)   
-   - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_11_Gene_Set_Testing.mp4) . 
-   - [Practical (html)](Markdowns/11_Gene_set_testing.html) [(pdf)](Markdowns/11_Gene_set_testing.pdf)
-   - [Practical solutions (html)](Markdowns/11_Gene_set_testing_solutions.html) [(pdf)](Markdowns/11_Gene_set_testing_solutions.pdf)    
+   - [Video Lecture](https://content.cruk.cam.ac.uk/bioinformatics/CourseData/Bulk_RNASeq_Course_Videos/Session_11_Gene_Set_Testing.mp4)    
+   - [Practical](Markdowns/11_Gene_set_testing.html)     
+   - [Exercise solutions](Markdowns/11_Gene_set_testing_solutions.html)
 
 
 ## Data, software and materials
