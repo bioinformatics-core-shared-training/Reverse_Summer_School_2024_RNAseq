@@ -23,6 +23,7 @@ as practicals. The full course can be found here:
 
 ### Day 2 (Friday 22nd September)
 
+* [Pre-run script](Makerere_Course_Materials/06_pre_run.R) - This script will download some resources for the practical session, please run it before the lectures as it takes a while.
 * [Recap of Day 1](Makerere_Course_Materials/Day2_Recap.html)
 * [Annotation and Visualistation (Slides)](Makerere_Course_Materials/05_Annotation_and_Visualisation.Slides.html)
 * [Annotation and Visualistation (Practical)](Makerere_Course_Materials/05_Annotation_and_Visualisation.html)
