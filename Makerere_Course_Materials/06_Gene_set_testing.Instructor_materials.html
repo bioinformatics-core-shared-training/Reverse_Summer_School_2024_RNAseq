@@ -289,14 +289,11 @@ listCollections(msigdb.mm)</code></pre>
 </div>
 <div id="rank-genes" class="section level4">
 <h4>Rank genes</h4>
-<div id="start-with-we-will-simply-use-a-rank-the-genes-based-on-their-fold-change." class="section level5">
-<h5>start with we will simply use a rank the genes based on their fold change.</h5>
-</div>
-<div id="we-should-use-the-shrunk-lfc-values." class="section level5">
-<h5>we should use the shrunk LFC values.</h5>
+<div id="log10pvalue-signlfc" class="section level5">
+<h5>-log10(pvalue) * sign(LFC)</h5>
 <pre class="r"><code>rankedGenes &lt;- shrink.d11 %&gt;%
     drop_na(GeneID, FDR, logFC, Entrez) %&gt;%
-    mutate(rank = logFC) %&gt;%
+    mutate(rank = -log10(pvalue) * sign(logFC)) %&gt;%
     arrange(desc(rank)) %&gt;%
     pull(rank, Entrez)
 head(rankedGenes)</code></pre>

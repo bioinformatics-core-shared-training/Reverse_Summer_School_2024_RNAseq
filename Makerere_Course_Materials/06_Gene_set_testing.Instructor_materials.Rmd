@@ -153,14 +153,12 @@ listCollections(msigdb.mm)
 
 #### Rank genes
 
-##### start with we will simply use a rank the genes based on their fold change.
-
-##### we should use the shrunk LFC values.
+##### -log10(pvalue) * sign(LFC)
 
 ```{r preparedata}
 rankedGenes <- shrink.d11 %>%
     drop_na(GeneID, FDR, logFC, Entrez) %>%
-    mutate(rank = logFC) %>%
+    mutate(rank = -log10(pvalue) * sign(logFC)) %>%
     arrange(desc(rank)) %>%
     pull(rank, Entrez)
 head(rankedGenes)

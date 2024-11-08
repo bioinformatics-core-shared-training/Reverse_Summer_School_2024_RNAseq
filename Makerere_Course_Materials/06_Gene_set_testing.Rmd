@@ -313,16 +313,22 @@ package [@Yu2012] that implements the same algorithm in R.
 We need to provide `GSEA` with a vector containing values for a given gene
 mtric, e.g. log(fold change), sorted in decreasing order.
 
-To start with we will simply use a rank the genes based on their fold change.
+We will use the following metric to rank the genes:
+
+$$
+-log_{10}\left(pvalue\right) * sign\left(log2(FoldChange)\right)
+$$
+
+This puts the most significantly up-regulated genes at the top of the list and
+the most significantly down-regulated genes at the bottom of the list.
 
 We must exclude genes with no Entrez ID.
 
-Also, we should use the shrunk LFC values.
 
 ```{r preparedata}
 rankedGenes <- shrink.d11 %>%
     drop_na(GeneID, FDR, logFC, Entrez) %>%
-    mutate(rank = logFC) %>%
+    mutate(rank = -log10(pvalue) * sign(logFC)) %>%
     arrange(desc(rank)) %>%
     pull(rank, Entrez)
 head(rankedGenes)
