@@ -29,6 +29,7 @@ as practicals. The full course can be found here:
 * [Annotation and Visualistation (Practical)](Makerere_Course_Materials/05_Annotation_and_Visualisation.html)
 * [Gene Set Testing (Slides)](Makerere_Course_Materials/06_Gene_set_testing_introduction.html)
 * [Gene Set Testing (Practical)](Makerere_Course_Materials/06_Gene_set_testing.html)
+* [DESeq2 - Ashley's Script](Makerere_Course_Materials/DESeq2_script.R)
 
 ## Additional Resources
 
