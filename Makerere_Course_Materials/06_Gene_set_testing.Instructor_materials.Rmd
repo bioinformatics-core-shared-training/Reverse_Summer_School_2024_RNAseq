@@ -1,0 +1,222 @@
+---
+title: "Gene Set Testing for RNA-seq"
+subtitle: "Instructor Script"
+output:
+  html_document:
+    toc: no
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+```{r loadClusterProfiler, message = FALSE}
+library(DESeq2)
+library(clusterProfiler)
+library(tidyverse)
+```
+
+
+## Over-representation analysis 
+
+### KEGG enrichment analysis
+
+##### `clusterprofiler` direct online access of the current KEGG database 
+##### KEGG: Kyoto Encyclopedia of Genes and Genomes
+
+```{r}
+search_kegg_organism("mouse", by = "common_name")
+```
+
+##### We will use the 'mmu' 'kegg_code'.
+
+```{r loadData}
+ddsObj.interaction <- readRDS("RObjects/DESeqDataSet.interaction.rds")
+results.interaction.11 <- readRDS("RObjects/DESeqResults.interaction_d11.rds")
+```
+
+#### Shrinking the log2FoldChange
+
+```{r unshrunkMA}
+plotMA(results.interaction.11, alpha = 0.05)
+
+ddsShrink.11 <- lfcShrink(ddsObj.interaction,
+                          res = results.interaction.11,
+                          type = "ashr")
+
+shrinkTab.11 <- as.data.frame(ddsShrink.11) %>%
+    rownames_to_column("GeneID") %>%
+    rename(logFC = log2FoldChange, FDR = padj)
+
+par(mfrow = c(1, 2))
+plotMA(results.interaction.11, alpha = 0.05)
+plotMA(ddsShrink.11, alpha = 0.05)
+```
+
+#### Load results with annotation
+
+```{r loadDataAnnotated}
+shrink.d11 <- readRDS("RObjects/Shrunk_Results.d11.rds")
+```
+
+##### We will only use genes that have padj < 0.05 & and LFC > 2.
+
+```{r enrichKEGGprint}
+sigGenes <- shrink.d11 %>%
+    drop_na(Entrez, FDR) %>%
+    filter(FDR < 0.05 & abs(logFC) > 1) %>%
+    pull(Entrez)
+
+keggRes <- enrichKEGG(gene = sigGenes, organism = "mmu")
+as_tibble(keggRes)
+```
+
+#### Visualise a pathway in a browser
+
+```{r browseKegg}
+browseKEGG(keggRes, "mmu04612")
+```
+
+#### Visualise a pathway as a file
+
+```{r pathview, message = F}
+library(pathview)
+logFC <- shrink.d11$logFC
+names(logFC) <- shrink.d11$Entrez
+pathview(gene.data = logFC,
+         pathway.id = "mmu04612",
+         species = "mmu",
+         limit = list(gene = 20, cpd = 1))
+```
+
+##### *mmu04612.pathview.png*
+
+#### GO term enrichment analysis
+
+###### mouse database called `org.Mm.eg.db`. 
+
+##### provide a list of the 'universe' of all the genes 
+
+##### Gene Ontology terms are divided into 3 categories. 
+
+```{r GO analysis, message = FALSE, warning = FALSE}
+library(org.Mm.eg.db)
+
+sigGenes_GO <-  shrink.d11 %>%
+    drop_na(FDR) %>%
+    filter(FDR < 0.01 & abs(logFC) > 2) %>%
+    pull(GeneID)
+
+universe <- shrink.d11$GeneID
+
+ego <- enrichGO(gene          = sigGenes_GO,
+                universe      = universe,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = "ENSEMBL",
+                ont           = "BP",
+                pvalueCutoff  = 0.01,
+                readable      = TRUE)
+
+
+barplot(ego, showCategory = 20)
+
+dotplot(ego, font.size = 14)
+```
+
+###### Network based on overlap of genes between terms
+
+```{r emap}
+library(enrichplot)
+ego_pt <- pairwise_termsim(ego)
+emapplot(ego_pt, cex_label_category = 0.5)
+```
+
+### GSEA analysis
+
+```{r}
+library(msigdb)
+library(ExperimentHub)
+
+eh <- ExperimentHub()
+query(eh, c("msigdb", "mm", "2023"))
+```
+
+##### most recent available release of MSigDb is "msigdb.v2023.1"
+
+```{r}
+msigdb.mm <- getMsigdb(org = "mm", id = "EZID", version = "2023.1")
+
+msigdb.mm
+
+listCollections(msigdb.mm)
+```
+
+#### Rank genes
+
+##### start with we will simply use a rank the genes based on their fold change.
+
+##### we should use the shrunk LFC values.
+
+```{r preparedata}
+rankedGenes <- shrink.d11 %>%
+    drop_na(GeneID, FDR, logFC, Entrez) %>%
+    mutate(rank = logFC) %>%
+    arrange(desc(rank)) %>%
+    pull(rank, Entrez)
+head(rankedGenes)
+```
+
+##### Load pathways
+
+```{r loadPathways_msigdb}
+hallmarks <- subsetCollection(msigdb.mm, "h")
+msigdb_ids <- geneIds(hallmarks)
+
+term2gene <- enframe(msigdb_ids, name = "gs_name", value = "entrez") %>%
+    unnest(entrez)
+
+head(term2gene)
+```
+
+##### Conduct analysis
+
+```{r runGsea, warning = FALSE}
+gseaRes <- GSEA(rankedGenes,
+                TERM2GENE = term2gene,
+                pvalueCutoff = 1.00,
+                minGSSize = 15,
+                maxGSSize = 500)
+```
+
+##### Let's look at the top 10 results.
+
+```{r top10GseaPrint, eval = FALSE}
+as_tibble(gseaRes) %>%
+    arrange(desc(abs(NES))) %>%
+    top_n(10, wt = -p.adjust) %>%
+    dplyr::select(-core_enrichment) %>%
+    mutate(across(c("enrichmentScore", "NES"), ~round(.x, digits = 3))) %>%
+    mutate(across(c("pvalue", "p.adjust", "qvalue"), scales::scientific))
+```
+
+```{r top10GseaPrintactual, echo = FALSE, warning = FALSE}
+as_tibble(gseaRes) %>%
+    arrange(desc(abs(NES))) %>%
+    top_n(10, wt = -p.adjust) %>%
+    dplyr::select(-core_enrichment) %>%
+    mutate(across(c("enrichmentScore", "NES"), ~round(.x, digits = 3))) %>%
+    mutate(across(c("pvalue", "p.adjust", "qvalue"), scales::scientific)) %>%
+    DT::datatable(option = list(dom = "t"))
+```
+
+##### Enrichment score plot
+
+```{r gseaEnrichmentPlot_both, fig.height = 8, fig.width = 10}
+gseaplot(gseaRes,
+         geneSetID = "HALLMARK_INFLAMMATORY_RESPONSE",
+         title = "HALLMARK_INFLAMMATORY_RESPONSE")
+```
+
+---------------------------------------------------------------
+
+
