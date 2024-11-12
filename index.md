@@ -1,6 +1,6 @@
 # Introduction to Bulk RNA-seq data analysis
 
-![](images/CRUK_Cambridge_Institute.png)
+![](images/CRUK_Cambridge_Institute.png){height=80px}
 
 ## Outline
 
@@ -24,7 +24,6 @@ as practicals. The full course can be found here:
 
 ### Day 2 (Friday 22nd September)
 
-* [Pre-run script](Makerere_Course_Materials/06_pre_run.R) - This script will download some resources for the practical session, please run it before the lectures as it takes a while.
 * [Recap of Day 1](Makerere_Course_Materials/Day2_Recap.html)
 * [Annotation and Visualistation (Slides)](Makerere_Course_Materials/05_Annotation_and_Visualisation.Slides.html)
 * [Annotation and Visualistation (Practical)](Makerere_Course_Materials/05_Annotation_and_Visualisation.html)
@@ -46,7 +45,7 @@ Carlton. We are extremely grateful to the authors for making their materials
 available; Maria Doyle, Belinda Phipson, Matt Ritchie, Anna Trigos, Harriet
 Dashnow, Charity Law.
 
-![](Bulk_RNAseq_Course_Base/images/combine_banner_small.png)
+![](images/combine_banner_small.png){width=200px}
 
 The materials have been rewritten/modified/corrected/updated by various
 contributors over the past 8 years including:
