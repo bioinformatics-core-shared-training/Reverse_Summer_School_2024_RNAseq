@@ -1,6 +1,6 @@
 # Introduction to Bulk RNA-seq data analysis
 
-![](images/CRUK_Cambridge_Institute.png){height=80px}
+![](images/Logos2024.png)  
 
 ## Outline
 
